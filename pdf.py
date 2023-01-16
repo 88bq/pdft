@@ -282,7 +282,7 @@ def any(call):
                     with open(f'{ch}.pdf', 'wb') as new_file:
                         new_file.write(pdf[pdf.index(ch) + 1])
                     doc = fitz.open(f'{ch}.pdf')
-                    
+
                     v = 0
                     for i in doc:
                         page = doc.loadPage(v)  # number of page
@@ -346,7 +346,8 @@ def any(call):
                             new_file.close()
                         except:
                             pass
-                        os.unlink(f'Ahmed Bot {ch}.pdf')
+                        os.popen(f'rm Ahmed Bot {ch}.pdf')
+                        print('done')
                         os.unlink(f'{ch}.png')
                     except:
                         pass
@@ -367,7 +368,7 @@ def any(call):
         elif call.data == 'ad' and ch == idi:
             markup = types.ForceReply(selective=False)
             bot.send_message(ch, 'ur Ads', reply_markup=markup)
-            
+
 
 
 @bot.message_handler(content_types='text')
