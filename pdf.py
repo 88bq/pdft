@@ -255,6 +255,10 @@ def any(call):
                             pix = None
 
                     try:
+                        try:
+                            new_file.close()
+                        except:
+                            pass
                         os.unlink(f'{ch}.png')
                         os.remove(f'{ch}.pdf')
                     except:
@@ -278,6 +282,7 @@ def any(call):
                     with open(f'{ch}.pdf', 'wb') as new_file:
                         new_file.write(pdf[pdf.index(ch) + 1])
                     doc = fitz.open(f'{ch}.pdf')
+                    
                     v = 0
                     for i in doc:
                         page = doc.loadPage(v)  # number of page
@@ -287,6 +292,10 @@ def any(call):
                         bot.send_photo(ch, open(f'{ch}.png', 'rb'))
                         v += 1
                     try:
+                        try:
+                            new_file.close()
+                        except:
+                            pass
                         os.unlink(f'{ch}.png')
                         os.unlink(f'{ch}.pdf')
                     except:
@@ -332,6 +341,15 @@ def any(call):
                     aa1 = types.InlineKeyboardButton('تغير اسم الملف💚🔀', callback_data='chang')
                     aa.add(aa1)
                     bot.send_document(ch, open(f'Ahmed Bot {ch}.pdf', 'rb'), reply_markup=aa)
+                    try:
+                        try:
+                            new_file.close()
+                        except:
+                            pass
+                        os.unlink(f'Ahmed Bot {ch}.pdf')
+                        os.unlink(f'{ch}.png')
+                    except:
+                        pass
 
                     i = 0
                     while i < xx:
@@ -349,6 +367,7 @@ def any(call):
         elif call.data == 'ad' and ch == idi:
             markup = types.ForceReply(selective=False)
             bot.send_message(ch, 'ur Ads', reply_markup=markup)
+            
 
 
 @bot.message_handler(content_types='text')
