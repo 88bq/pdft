@@ -211,7 +211,7 @@ def any(call):
                         if img.mode == 'RGBA':
                             img = img.convert('RGB')
 
-                        img.save(f'test{i}.pdf', 'PDF', resolution=100.0)
+                        img.save(f'test{i}.pdf', 'PDF', resolution=200.0)
                         merger.append(f'test{i}.pdf')
                         i += 1
                     # merger.append(img.save('test10.pdf', 'PDF', resolution=100.0))
@@ -221,6 +221,15 @@ def any(call):
                     aa1 = types.InlineKeyboardButton('تغير اسم الملف💚🔀', callback_data='chang')
                     aa.add(aa1)
                     bot.send_document(ch, open(f'Ahmed Bot {ch}.pdf', 'rb'), reply_markup=aa)
+                    try:
+                        try:
+                            new_file.close()
+                        except:
+                            pass
+                        os.unlink(f'Ahmed Bot {ch}.pdf')
+                        os.unlink(f'{ch}.png')
+                    except:
+                        pass
                     xx = len(jpg[jpg.index(ch):jpg.index(f'{ch}end')]) - 1
                     i = 0
                     while i < xx:
@@ -282,7 +291,7 @@ def any(call):
                     with open(f'{ch}.pdf', 'wb') as new_file:
                         new_file.write(pdf[pdf.index(ch) + 1])
                     doc = fitz.open(f'{ch}.pdf')
-
+                    
                     v = 0
                     for i in doc:
                         page = doc.loadPage(v)  # number of page
@@ -346,8 +355,7 @@ def any(call):
                             new_file.close()
                         except:
                             pass
-                        os.popen(f'rm Ahmed Bot {ch}.pdf')
-                        print('done')
+                        os.unlink(f'Ahmed Bot {ch}.pdf')
                         os.unlink(f'{ch}.png')
                     except:
                         pass
@@ -368,8 +376,7 @@ def any(call):
         elif call.data == 'ad' and ch == idi:
             markup = types.ForceReply(selective=False)
             bot.send_message(ch, 'ur Ads', reply_markup=markup)
-
-
+            
 
 @bot.message_handler(content_types='text')
 def an(msg):
@@ -390,6 +397,15 @@ def an(msg):
                 with open(f'{msg.text}.pdf', 'wb') as new_file:
                     new_file.write(qq)
                 bot.send_document(ch, open(f'{msg.text}.pdf', 'rb'))
+                try:
+                    try:
+                        new_file.close()
+                    except:
+                        pass
+                    os.unlink(f'{msg.text}.pdf')
+                    os.unlink(f'{ch}.png')
+                except:
+                    pass
             else:
                 bot.send_message(ch, 'قم بارسال الملف من جديد من فظلك*️⃣')
     except:
